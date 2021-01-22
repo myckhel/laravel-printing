@@ -3,6 +3,8 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/rawilk/laravel-printing.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
 ![Tests](https://github.com/rawilk/laravel-printing/workflows/Tests/badge.svg?style=flat-square)
 [![Total Downloads](https://img.shields.io/packagist/dt/rawilk/laravel-printing.svg?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/rawilk/laravel-printing?style=flat-square)](https://packagist.org/packages/rawilk/laravel-printing)
+[![License](https://img.shields.io/github/license/rawilk/laravel-printing?style=flat-square)](https://github.com/rawilk/laravel-printing/blob/master/LICENSE.md)
 
 
 Laravel Printing allows your application to directly send PDF documents or raw text directly from a remote server
@@ -21,6 +23,7 @@ Supported Print Drivers:
 
 - PrintNode: https://printnode.com
 - CUPS: https://cups.org
+- Custom: Configure your own custom driver
 
 ## Documentation:
 
@@ -39,90 +42,7 @@ You can publish the config file with:
 php artisan vendor:publish --provider="Rawilk\Printing\PrintingServiceProvider" --tag="config"
 ```
 
-This is the contents of the published config file:
-
-```php
-return [
-    /*
-    |--------------------------------------------------------------------------
-    | Driver
-    |--------------------------------------------------------------------------
-    |
-    | Supported: `printnode`, `cups`
-    |
-    */
-    'driver' => env('PRINTING_DRIVER', 'printnode'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Drivers
-    |--------------------------------------------------------------------------
-    |
-    | Configuration for each driver.
-    |
-    */
-    'drivers' => [
-        'printnode' => [
-            'key' => env('PRINT_NODE_API_KEY'),
-        ],
-        'cups' => [
-            'ip' => env('CUPS_SERVER_IP'),
-            'username' => env('CUPS_SERVER_USERNAME'),
-            'password' => env('CUPS_SERVER_PASSWORD'),
-            'port' => env('CUPS_SERVER_PORT', 631),
-        ],
-        
-        /*
-         * Add your custom drivers here:
-         *
-         * 'custom' => [
-         *      'driver' => 'custom_driver',
-         *      // other config for your custom driver
-         * ],
-         */
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Printer Id
-    |--------------------------------------------------------------------------
-    |
-    | If you know the id of a default printer you want to use, enter it here.
-    |
-    */
-    'default_printer_id' => null,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Receipt Printer Options
-    |--------------------------------------------------------------------------
-    |
-    */
-    'receipts' => [
-        /*
-         * How many characters fit across a single line on the receipt paper.
-         * Adjust according to your needs.
-         */
-        'line_character_length' => 45,
-
-        /*
-         * The width of the print area in dots.
-         * Adjust according to your needs.
-         */
-        'print_width' => 550,
-
-        /*
-         * The height (in dots) barcodes should be printed normally.
-         */
-        'barcode_height' => 64,
-
-        /*
-         * The width (magnification) each barcode should be printed in normally.
-         */
-        'barcode_width' => 2,
-    ],
-];
-```
+The contents of the default configuration file can be found here: https://github.com/rawilk/laravel-printing/blob/master/config/printing.php
 
 ## Testing
 
